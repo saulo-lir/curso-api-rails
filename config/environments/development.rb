@@ -72,17 +72,19 @@ Rails.application.configure do
   #config.file_watcher = ActiveSupport::EventedFileUpdateChecker
   config.file_watcher = ActiveSupport::FileUpdateChecker
 
-=begin
-  Subistuir 
-    config.file_watcher = ActiveSupport::EventedFileUpdateChecker
-  por
-    config.file_watcher = ActiveSupport::FileUpdateChecker
-  Evita a necessidade de sempre restartar o servidor quando fazemos alguma alteração nos controllers/views/models, etc.
-=end
+  '''
+    Subistuir 
+      config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+    por
+      config.file_watcher = ActiveSupport::FileUpdateChecker
+    Evita a necessidade de sempre restartar o servidor quando fazemos alguma alteração nos controllers/views/models, etc.
+  '''
 
-rescue => exception
-  
-end
+  '''
+  rescue => exception
+    
+  end
+  '''
 
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
