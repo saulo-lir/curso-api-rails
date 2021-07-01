@@ -1,5 +1,6 @@
 class Contact < ApplicationRecord
     belongs_to :kind, optional: true # Por padrão é obrigatório enviarmos o valor do relacionamento quando ocorrer algum cadastro. O optional: true tira essa obrigatoriedade.
+    has_many :phones
 =begin
     def author
         "Gandalf"
