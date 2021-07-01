@@ -1,6 +1,55 @@
 class Contact < ApplicationRecord
     belongs_to :kind, optional: true # Por padrão é obrigatório enviarmos o valor do relacionamento quando ocorrer algum cadastro. O optional: true tira essa obrigatoriedade.
     has_many :phones
+    accepts_nested_attributes_for :phones, allow_destroy: true # Aceitar atributos aninhados. Significa que através do model contact, poderemos cadastrar novos telefones. Para deletar os atributos aninhados, devemos permitir isso com o parâmetro allow_destroy: true
+
+=begin
+    Quando enviarmos os telefones para cadastro através do contato, devemos informar com seu nome no plural seguido de "_attributes":
+    {
+        "name": "Testando atributos aninhados",
+        "email": "andrea_jakubowski@fritsch.co",
+        "birthdate": "2002-04-30",
+        "created_at": "2021-07-01T19:56:47.124Z",
+        "updated_at": "2021-07-01T19:56:47.124Z",
+        "kind_id": 1,
+        "phones_attributes": [
+            {
+                "number": "455.257.3366"
+            },
+            {
+                "number": "857.907.8182"
+            },
+            {
+                "number": "1-312-010-9023"
+            },
+            {
+                "number": "(330) 668-1025"
+            }
+        ]
+    }
+
+
+    Quando quisermos deletar os telefones, podemos inserir o parâmetro "_destroy" no json que será enviado, bem como no strong parameters:
+
+    {
+        "contact":{
+                "name": "Testando atributos aninhados UPDATE PUT",
+                "email": "andrea_jakubowski@fritsch.co",
+                "birthdate": "2002-04-30",
+                "kind_id": 1,
+                "phones_attributes": [
+                    {
+                        "id": 204,
+                        "_destroy": 1
+                    }
+                ]
+        }
+    }
+
+    Lembrando que nesse caso o método é o PATCH
+=end
+
+
 =begin
     def author
         "Gandalf"

@@ -9,7 +9,7 @@ class ContactsController < ApplicationController
     #render json: @contacts, only: [:name, :email]
     #render json: @contacts.map {|contact| contact.attributes.merge({author: "Gandalf"})}
 
-    render json: @contacts, include: :kind
+    render json: @contacts, include: [:kind, :phones]
 =begin
     1- Acessar a rota /contacts.json é equivalente a:
 
@@ -129,7 +129,7 @@ class ContactsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def contact_params
-      # É necessário incluirmos o kind_id nas permissões
-      params.permit(:name, :email, :birthdate, :kind_id)
+      # É necessário incluirmos o kind_id nas permissões (Strong Parameters), bem como qualquer atributo novo que venha a ser adicionado, inclusive os nested_attributes
+      params.require("contact").permit(:name, :email, :birthdate, :kind_id, phones_attributes: [:id, :number, :_destroy])
     end
 end
