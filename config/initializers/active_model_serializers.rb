@@ -1,0 +1,2 @@
+# adicionando esse arquivo com essa configuração, siginifica que as respostas json (a maioria pelo menos) irão seguir as especificações de formatação https://jsonapi.org/format/
+ActiveModelSerializers.config.adapter = :json

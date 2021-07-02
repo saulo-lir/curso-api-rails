@@ -9,7 +9,8 @@ class ContactsController < ApplicationController
     #render json: @contacts, only: [:name, :email]
     #render json: @contacts.map {|contact| contact.attributes.merge({author: "Gandalf"})}
 
-    render json: @contacts, root:true, include: [:kind, :phones, :address]
+    #render json: @contacts, root:true, include: [:kind, :phones, :address]
+    render json: @contacts
 =begin
     1- Acessar a rota /contacts.json é equivalente a:
 
