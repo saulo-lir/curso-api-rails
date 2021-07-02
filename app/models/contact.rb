@@ -1,7 +1,13 @@
 class Contact < ApplicationRecord
     belongs_to :kind, optional: true # Por padrão é obrigatório enviarmos o valor do relacionamento quando ocorrer algum cadastro. O optional: true tira essa obrigatoriedade.
     has_many :phones
-    accepts_nested_attributes_for :phones, allow_destroy: true # Aceitar atributos aninhados. Significa que através do model contact, poderemos cadastrar novos telefones. Para deletar os atributos aninhados, devemos permitir isso com o parâmetro allow_destroy: true
+
+    has_one :address # A associação has_one, embora pareça que aceite apenas um elemento, permite que cadastremos mais de um endereço através de contatos. Os registros ficarão na tabela de endereços, porém, na hora de exibir (Ex.: Contact.last.adress) ele só fará com o último endereço cadastrado.
+    # Para alterarmos esse padrão, e só permitir que haja atualização do endereço, e não inclusão de um novo, devemos colocar a opção update_only:true em accepts_nested_attributes_for
+
+    accepts_nested_attributes_for :phones, :address, allow_destroy: true # Aceitar atributos aninhados. Significa que através do model contact, poderemos cadastrar novos telefones. Para deletar os atributos aninhados, devemos permitir isso com o parâmetro allow_destroy: true
+
+    accepts_nested_attributes_for :address, update_only: true
 
 =begin
     Quando enviarmos os telefones para cadastro através do contato, devemos informar com seu nome no plural seguido de "_attributes":
