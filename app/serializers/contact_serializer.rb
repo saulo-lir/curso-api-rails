@@ -8,6 +8,10 @@ class ContactSerializer < ActiveModel::Serializer
   has_many :phones
   has_one :address
 
+  #Trabalhando com links. Aqui, self poderia ser qualquer nome, mas por convenção, utilizamos essa palavra.
+  link(:self) { contact_path(object.id) }
+  link(:kind) { kind_path(object.kind.id) }
+
   def author
     "Atributo extra"
   end

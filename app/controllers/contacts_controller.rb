@@ -71,7 +71,8 @@ class ContactsController < ApplicationController
   # GET /contacts/1 or /contacts/1.json
   def show
     # Renderizando por default no formato json e mesclando o contato com o autor
-    render json: @contact.attributes.merge({author: "Morgoth"})
+    # render json: @contact.attributes.merge({author: "Morgoth"})
+    render json: @contact
   end
 
   # GET /contacts/new
