@@ -195,6 +195,10 @@ GEM
     turbolinks-source (5.2.0)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
+    versionist (2.0.1)
+      activesupport (>= 3)
+      railties (>= 3)
+      yard (~> 0.9.20)
     web-console (4.1.0)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
@@ -214,6 +218,7 @@ GEM
     websocket-extensions (0.1.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
+    yard (0.9.26)
     zeitwerk (2.4.2)
 
 PLATFORMS
@@ -237,6 +242,7 @@ DEPENDENCIES
   spring
   turbolinks (~> 5)
   tzinfo-data
+  versionist
   web-console (>= 4.1.0)
   webdrivers
   webpacker (~> 5.0)
